@@ -28,7 +28,7 @@ plt.show()
 
 # 1.6.3 이미지 표시하기
 
-img = imread('./dataset/lena.png')
+img = imread('../dataset/lena.png')
 
 plt.imshow(img)
 plt.show()
