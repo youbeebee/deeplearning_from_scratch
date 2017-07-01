@@ -11,7 +11,7 @@ print(B)
 print(np.ndim(B))  # 2
 print(B.shape)  # (3, 2)
 
-# 3.3.2 행렬의 내적(행렬 곱)
+# 3.3.2 행렬의 내적(행렬 곱/스칼라 곱)
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
 print(np.dot(A, B))
@@ -31,4 +31,4 @@ print(np.dot(A, B))  # (2, 2)
 X = np.array([1, 2])  # (2,)
 W = np.array([[1, 3, 5], [2, 4, 6]])  # (2, 3)
 Y = np.dot(X, W)
-print(Y)  # (3,)
+print(Y)  # [5 11 17]
