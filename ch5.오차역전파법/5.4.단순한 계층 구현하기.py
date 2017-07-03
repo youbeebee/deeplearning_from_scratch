@@ -16,6 +16,7 @@ class MulLayer:
         return dx, dy
 
 
+# 5.4.2 덧셈 계층
 class AddLayer:
     def __init__(self):
         pass
