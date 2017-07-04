@@ -207,3 +207,83 @@ class Affine:
         self.db = np.sum(dout, axis=0)
 
         return dx
+
+
+# 5.6.3 Softmax-with-Loss 계층
+"""
+소프트맥스 계층 : 입력 값을 정규화(출력의 합이 1이 되도록 변경)하여 출력
+학습과 추론 중 학습에서 주로 사용
+소프트맥스 계층과 손실 함수(교차 엔트로피 오차)를 포함해 계산 그래프를 그림
+자세한 역전파 계산은 부록A 참고.
+
+간소화한 Softmax-with-Loss계층의 계산 그래프
+a1   →    |         | → y1 → |         |
+y1 - t1 ← |         |   t1 ↗  | Cross   |
+a2   →    | Softmax | → y2 → | Entropy | → L
+y2 - t2 ← |         |   t2 ↗  | Error   | ← 1
+a3   →    |         | → y3 → |         |
+y3 - t3 ←               t3 ↗
+입력 : (a1, a2, a3)
+정규화된 출력 : (y1, y2, y3)
+정답 레이블 (t1, t2, t3)
+손실 : L
+
+역전파로 Softmax 계층의 출력과 정답 레이블의 차분 값
+(y1 - t1, y2 - t2, y2 - t2)이 전달됨.
+이는 교차 엔트로피 오차 함수가 그렇게 설계되었기 때문.
+항등 함수의 손실 함수로는 평균 제곱 오차를 사용하는데,
+그럴 경우 역전파의 결과가 (y1 - t1, y2 - t2, y2 - t2)로 말끔히 떨어짐.
+
+ex) 정답 레이블 t = (0, 1, 0) 일 때,
+소프트맥스가 (0.3, 0.2, 0.5)를 출력했다고 할 때, 소프트맥스 계층의 역전파는
+(0.3, -0.8, 0.5)로 앞 계층에 큰 오차를 전파하게 됨
+소프트맥스가 (0.01, 0.99, 0.)을 출력했다면 역전파는 (0.01, -0.01, 0)
+으로 오차가 작아짐
+"""
+
+
+# yk = exp(ak) / ∑(i=1 to n)(exp(ai))
+def softmax(a):
+    c = np.max(a)
+    exp_a = np.exp(a - c)  # 오버플로 대책
+    sum_exp_a = np.sum(exp_a)
+    y = exp_a / sum_exp_a
+
+    return y
+
+
+def cross_entropy_error(y, t):
+    delta = 1e-7  # 0일때 -무한대가 되지 않기 위해 작은 값을 더함
+    return -np.sum(t * np.log(y + delta))
+
+
+class SoftmaxWithLoss:
+    def __init__(self):
+        self.loss = None  # 손실
+        self.y = None     # softmax의 출력
+        self.t = None     # 정답 레이블(원-핫 벡터)
+
+    def forward(self, x, t):
+        self.t = t
+        self.y = softmax(x)  # 3.5.2, 4.2.2에서 구현
+        self.loss = cross_entropy_error(self.y, self.t)
+
+        return self.loss
+
+    def backward(self, dout=1):
+        batch_size = self.t.shape[0]
+        dx = self.y - self.t / batch_size
+
+        return dx
+
+
+if __name__ == '__main__':
+    swl = SoftmaxWithLoss()
+    a = np.array([1, 8, 3])  # 비슷하게 맞춤
+    t = np.array([0, 1, 0])
+    print(swl.forward(a, t))  # 0.0076206166295
+    print(swl.backward())  # [ 0.00090496  0.65907491  0.00668679]
+
+    a = np.array([1, 3, 8])  # 오차가 큼
+    print(swl.forward(a, t))  # 5.00760576266
+    print(swl.backward())  # [  9.04959183e-04 -3.26646539e-01 9.92408247e-01]
