@@ -48,3 +48,31 @@ for i in range(iters_num):
         train_acc_list.append(train_acc)
         test_acc_list.append(test_acc)
         print("train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
+
+"""
+train acc, test acc | 0.0992833333333, 0.1032
+train acc, test acc | 0.898, 0.9026
+train acc, test acc | 0.92135, 0.9216
+train acc, test acc | 0.936016666667, 0.9337
+train acc, test acc | 0.945316666667, 0.9431
+train acc, test acc | 0.94675, 0.9427
+train acc, test acc | 0.954766666667, 0.9521
+train acc, test acc | 0.9602, 0.9551
+train acc, test acc | 0.9634, 0.9581
+train acc, test acc | 0.9656, 0.9597
+train acc, test acc | 0.9683, 0.9615
+train acc, test acc | 0.970516666667, 0.9629
+train acc, test acc | 0.97305, 0.9649
+train acc, test acc | 0.9731, 0.9661
+train acc, test acc | 0.975916666667, 0.9659
+train acc, test acc | 0.976383333333, 0.9666
+train acc, test acc | 0.977916666667, 0.969
+[Finished in 45.5s]
+"""
+
+# 5.8 정리
+"""
+계산 과정을 시각적으로 보여주는 방법인 계산 그래프에 대해 학습했다.
+계산 그래프를 통해 신경망의 동작과 오차역전파법을 설명하고, 계층이라는 단위로 구현했다.
+
+"""
