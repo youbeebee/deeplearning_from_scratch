@@ -25,7 +25,7 @@ def numerical_gradient(f, x):
     return grad
 
 
-# f(x0, x1) = x0^2 + x1^2
+# f(x0, x1) = x0² + x1²
 def function_2(x):
     return x[0]**2 + x[1]**2
     # or return np.sum(x**2)
@@ -58,7 +58,7 @@ def gradient_descent(f, init_x, lr=0.01, step_num=100):
     return x, np.array(x_history)
 
 
-# 경사법으로 f(x0, x1) = x0^2 + x1^2의 최솟값을 구해라
+# 경사법으로 f(x0, x1) = x0² + x1²의 최솟값을 구해라
 init_x = np.array([-3.0, 4.0])
 x, x_history = gradient_descent(function_2, init_x, lr=0.1)
 print(x)  # [ -6.11110793e-10   8.14814391e-10]

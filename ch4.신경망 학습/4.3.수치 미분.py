@@ -18,7 +18,7 @@ def numerical_diff(f, x):
 
 
 # 4.3.2 수치 미분의 예
-# y = 0.01x^2 + 0.1x
+# y = 0.01x² + 0.1x
 def function_1(x):
     return 0.01*x**2 + 0.1*x
 
@@ -31,7 +31,7 @@ plt.plot(x, y)
 # plt.show()
 
 # x = 5, 10일때 미분
-print(numerical_diff(function_1, 5))  # 0.200000000000089
+print(numerical_diff(function_1, 5))   # 0.200000000000089
 print(numerical_diff(function_1, 10))  # 0.29999999999996696
 
 
@@ -50,7 +50,7 @@ plt.show()
 
 
 # 4.3.3 편미분
-# f(x0, x1) = x0^2 + x1^2
+# f(x0, x1) = x0² + x1²
 def function_2(x):
     return x[0]**2 + x[1]**2
     # or return np.sum(x**2)

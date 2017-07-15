@@ -5,7 +5,7 @@ sys.path.append(os.pardir)
 from dataset.mnist import load_mnist
 from two_layer_net import TwoLayerNet
 
- # 데이터 읽기
+# 데이터 읽기
 (x_train, t_train), (x_test, t_test) = \
     load_mnist(normalize=True, one_hot_label=True)
 network = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)

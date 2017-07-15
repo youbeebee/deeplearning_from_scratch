@@ -6,7 +6,7 @@ import numpy as np
 
 
 # 4.2.1 평균 제곱 오차
-# E = 1/2 * sigma _k (yk-tk)^2
+# E = 1/2 * ∑ _k (yk-tk)²
 # yk : 신경망의 출력
 # tk : 정답 레이블
 # k : 데이터의 차원 수
@@ -28,7 +28,7 @@ print(mse)  # 0.5975
 
 
 # 4.2.2 교차 엔트로피 오차
-# E = -sigma _k (tk * log(yk))
+# E = -∑ _k (tk * log(yk))
 # log : 자연로그
 # yk : 신경망의 출력
 # tk : 정답 레이블(one-hot encoding)

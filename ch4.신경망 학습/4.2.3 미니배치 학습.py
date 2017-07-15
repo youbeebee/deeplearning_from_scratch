@@ -6,7 +6,7 @@ from dataset.mnist import load_mnist
 
 # 4.2.3 미니배치 학습
 # 훈련 데이터 전체에 대한 오차함수
-# E = -1/N * sigma _n (sigma _k (tk * log(yk)))
+# E = -1/N * ∑ _n (∑ _k (tk * log(yk)))
 # N : 데이터의 개수
 # 훈련 데이터 전체에 대한 손실 함수를 계산하기에는 시간이 오래걸리기 때문에
 # 일부를 추려 전체의 근사치로 이용할 수 있다.

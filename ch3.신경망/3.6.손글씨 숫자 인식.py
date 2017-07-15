@@ -20,7 +20,7 @@ from common.functions import sigmoid, softmax
 # normalize : 입력 이미지를 정규화(0.0~1.0 사이의 값으로)
 # one_hot_label : 레이블을 원-핫 인코딩 형태로 저장
 (x_train, t_train), (x_test, t_test) = load_mnist(flatten=True,
-    normalize=False)
+                                                  normalize=False)
 
 # 각 데이터의 형상 출력
 print(x_train.shape)  # (60000, 784)

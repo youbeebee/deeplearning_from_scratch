@@ -30,7 +30,7 @@ class SGD:
 """
 SGD는 단순하고구현이 쉽지만, 문제에 따라 비효율적일 때가 있다.
 다음 함수의 최솟값을 구해보자
-f(x, y) = 1/20 * x^2 + y^2
+f(x, y) = 1/20 * x² + y²
 각 점에서 함수의 기울기는 (x/10, 2y)로 y축 방향은 가파른데 x축 방향은 완만하다.
 또 최솟값은 (0, 0)이지만 기울기 대부분은 그 방향을 가리키지 않는다.
 따라서 SGD를 적용하면 y축으로 지그재그로 수렴한다.
@@ -66,7 +66,7 @@ class Momentum:
             self.v = {}
             for key, val in params.items():
                 self.v[key] = np.zeros_like(val)
-        
+
         for key in params.keys():
             self.v[key] = self.momentum * self.v[key] - self.lr * grads[key]
             params[key] += self.v[key]
