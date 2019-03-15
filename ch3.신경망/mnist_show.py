@@ -1,19 +1,25 @@
+import os
+import sys
+
 import numpy as np
-import sys, os
-sys.path.append(os.pardir)
-from dataset.mnist import load_mnist
+import matplotlib.pyplot as plt
 from PIL import Image
 
+from dataset.mnist import load_mnist
+
 # 3.6.1 MNIST 이미지 확인해보기
+
+sys.path.append(os.pardir)
 
 
 def img_show(img):
     pil_img = Image.fromarray(np.uint8(img))
-    pil_img.show()
+    plt.imshow(pil_img)
+    plt.show()
 
 
-(x_train, t_train), (x_test, t_test) = load_mnist(flatten=True,
-    normalize=False)
+(x_train, t_train), (x_test, t_test) = \
+    load_mnist(flatten=True, normalize=False)
 
 img = x_train[0]
 label = t_train[0]
